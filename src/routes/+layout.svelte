@@ -51,9 +51,6 @@
 			</svelte:fragment>
 		</AppBar>
 	</svelte:fragment>
-	<svelte:fragment slot="footer">
-		<div class="h-8" />
-	</svelte:fragment>
 	<!-- Page Route Content -->
 	<slot />
 </AppShell>

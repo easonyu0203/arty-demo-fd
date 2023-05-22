@@ -20,10 +20,10 @@
 <div class="container h-full mx-auto flex justify-center items-center">
 	<div class="space-y-5 text-center flex flex-col md:flex-row md:gap-8 items-center">
 		<!-- webcam display -->
-		<div class=" relative">
+		<div class=" relative flex justify-center items-center">
 			<video
 				hidden={!$CameraStore.is_camera_on}
-				class=" rounded max-w-xs md:max-w-md"
+				class=" rounded max-w-[80%] md:max-w-md"
 				playsinline
 				autoplay
 				muted
