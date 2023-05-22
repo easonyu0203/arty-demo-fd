@@ -23,7 +23,7 @@
 		<div class=" relative flex justify-center items-center">
 			<video
 				hidden={!$CameraStore.is_camera_on}
-				class=" rounded max-w-[80%] md:max-w-md"
+				class=" rounded max-w-[65%] md:max-w-md"
 				playsinline
 				autoplay
 				muted
@@ -45,7 +45,7 @@
 								<span>{(predict.score * 100).toFixed(1)} %</span>
 							</dt>
 						</span>
-						<ProgressBar label="Progress Bar" height="h-2" value={predict.score * 100} />
+						<ProgressBar label="Progress Bar" height="h-1" value={predict.score * 100} />
 					</div>
 				{/each}
 			</ul>
