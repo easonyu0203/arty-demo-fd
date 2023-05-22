@@ -9,6 +9,12 @@
 		await $CameraStore.getVideoStreamAsync();
 		videoElement.srcObject = $CameraStore.stream;
 	});
+
+	$: {
+		if (videoElement && $CameraStore.stream) {
+			videoElement.srcObject = $CameraStore.stream;
+		}
+	}
 </script>
 
 <div class="container h-full mx-auto flex justify-center items-center">
