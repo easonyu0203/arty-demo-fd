@@ -12,7 +12,7 @@
 </script>
 
 <div class="container h-full mx-auto flex justify-center items-center">
-	<div class="space-y-10 text-center flex flex-col md:flex-row md:gap-8 items-center">
+	<div class="space-y-5 text-center flex flex-col md:flex-row md:gap-8 items-center">
 		<!-- webcam display -->
 		<div class=" relative">
 			<video
@@ -45,7 +45,7 @@
 			</ul>
 
 			<!-- actions -->
-			<div class=" flex gap-4">
+			<div class=" flex gap-4 justify-center items-center">
 				<button
 					on:click={async () => await $CameraStore.getPredictionsAsync(videoElement)}
 					type="button"
