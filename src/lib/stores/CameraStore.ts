@@ -7,7 +7,7 @@ type Camera = {
 	stream: MediaStream | null;
 	predictions: PredictDto[];
 	is_requesting: boolean;
-	getVideoStreamAsync: () => Promise<void>;
+	getVideoStreamAsync: (videoElement: HTMLVideoElement) => Promise<void>;
 	getPredictionsAsync: (videoElement: HTMLVideoElement) => Promise<void>;
 };
 
@@ -18,7 +18,7 @@ export const CameraStore = writable<Camera>({
 	stream: null,
 	predictions: [],
 	is_requesting: false,
-	getVideoStreamAsync: async () => {
+	getVideoStreamAsync: async (videoElement: HTMLVideoElement) => {
 		let is_user_mode = false;
 		CameraStore.update((store) => {
 			is_user_mode = !store.is_user_mode;
@@ -39,6 +39,9 @@ export const CameraStore = writable<Camera>({
 				height: { ideal: 480 }
 			}
 		});
+
+		// update video element stream source
+		videoElement.srcObject = stream;
 
 		CameraStore.update((store) => {
 			return { ...store, stream, is_camera_on: true };

@@ -7,17 +7,8 @@
 	let videoElement: HTMLVideoElement;
 
 	onMount(async () => {
-		await $CameraStore.getVideoStreamAsync();
-		videoElement.srcObject = $CameraStore.stream;
+		await $CameraStore.getVideoStreamAsync(videoElement);
 	});
-
-	let old_mode = $CameraStore.is_user_mode;
-	$: {
-		if (videoElement && $CameraStore.is_user_mode != old_mode) {
-			videoElement.srcObject = $CameraStore.stream;
-			old_mode = $CameraStore.is_user_mode;
-		}
-	}
 </script>
 
 <div class="container h-full mx-auto flex justify-center items-center">
