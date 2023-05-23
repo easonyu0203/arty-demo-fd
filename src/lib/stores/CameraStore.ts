@@ -5,10 +5,11 @@ type Camera = {
 	is_camera_on: boolean;
 	data_url_img: string | null;
 	stream: MediaStream | null;
+	video_element: any;
 	predictions: PredictDto[];
 	is_requesting: boolean;
-	getVideoStreamAsync: (videoElement: HTMLVideoElement) => Promise<void>;
-	getPredictionsAsync: (videoElement: HTMLVideoElement) => Promise<void>;
+	getVideoStreamAsync: () => Promise<void>;
+	getPredictionsAsync: () => Promise<void>;
 };
 
 export const CameraStore = writable<Camera>({
@@ -16,12 +17,15 @@ export const CameraStore = writable<Camera>({
 	is_camera_on: false,
 	data_url_img: null,
 	stream: null,
+	video_element: null,
 	predictions: [],
 	is_requesting: false,
-	getVideoStreamAsync: async (videoElement: HTMLVideoElement) => {
+	getVideoStreamAsync: async () => {
 		let is_user_mode = false;
+		let videoElement: any;
 		CameraStore.update((store) => {
 			is_user_mode = !store.is_user_mode;
+			videoElement = store.video_element;
 			return {
 				...store,
 				is_user_mode: !store.is_user_mode,
@@ -30,6 +34,8 @@ export const CameraStore = writable<Camera>({
 				stream: null
 			};
 		});
+
+		if (videoElement === null) return;
 
 		// get video stream
 		const stream = await navigator.mediaDevices.getUserMedia({
@@ -48,20 +54,20 @@ export const CameraStore = writable<Camera>({
 		});
 	},
 
-	getPredictionsAsync: async (videoElement: HTMLVideoElement): Promise<void> => {
+	getPredictionsAsync: async (): Promise<void> => {
 		let store: any;
 		CameraStore.update((value) => {
 			store = value;
 			return { ...value, is_requesting: true };
 		});
 
-		if (!videoElement || !store.is_camera_on) return;
+		if (!store.video_element || !store.is_camera_on) return;
 
 		// capture frame
 		const canvas = document.createElement('canvas');
-		canvas.width = videoElement.videoWidth;
-		canvas.height = videoElement.videoHeight;
-		canvas.getContext('2d')?.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+		canvas.width = store.video_element.videoWidth;
+		canvas.height = store.video_element.videoHeight;
+		canvas.getContext('2d')?.drawImage(store.video_element, 0, 0, canvas.width, canvas.height);
 		const base64_img = canvas.toDataURL('image/jpeg');
 
 		// return if no image

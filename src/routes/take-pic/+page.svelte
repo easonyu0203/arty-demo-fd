@@ -7,7 +7,8 @@
 	let videoElement: HTMLVideoElement;
 
 	onMount(async () => {
-		await $CameraStore.getVideoStreamAsync(videoElement);
+		$CameraStore.video_element = videoElement;
+		await $CameraStore.getVideoStreamAsync();
 	});
 </script>
 
@@ -54,7 +55,7 @@
 			<div class=" flex gap-4 justify-center items-center">
 				<button
 					disabled={$CameraStore.is_requesting}
-					on:click={async () => await $CameraStore.getPredictionsAsync(videoElement)}
+					on:click={async () => await $CameraStore.getPredictionsAsync()}
 					type="button"
 					class="btn variant-ringed-primary px-8">Predict</button
 				>
