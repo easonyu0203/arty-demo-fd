@@ -6,6 +6,7 @@ type Camera = {
 	data_url_img: string | null;
 	stream: MediaStream | null;
 	predictions: PredictDto[];
+	is_requesting: boolean;
 	getVideoStreamAsync: () => Promise<void>;
 	getPredictionsAsync: (videoElement: HTMLVideoElement) => Promise<void>;
 };
@@ -16,6 +17,7 @@ export const CameraStore = writable<Camera>({
 	data_url_img: null,
 	stream: null,
 	predictions: [],
+	is_requesting: false,
 	getVideoStreamAsync: async () => {
 		let is_user_mode = false;
 		CameraStore.update((store) => {
@@ -45,8 +47,9 @@ export const CameraStore = writable<Camera>({
 
 	getPredictionsAsync: async (videoElement: HTMLVideoElement): Promise<void> => {
 		let store: any;
-		CameraStore.subscribe((value) => {
+		CameraStore.update((value) => {
 			store = value;
+			return { ...value, is_requesting: true };
 		});
 
 		if (!videoElement || !store.is_camera_on) return;
@@ -75,7 +78,7 @@ export const CameraStore = writable<Camera>({
 
 		// Update store
 		CameraStore.update((store) => {
-			return { ...store, predictions: result };
+			return { ...store, predictions: result, is_requesting: false };
 		});
 	}
 });
