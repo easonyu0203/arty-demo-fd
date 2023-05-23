@@ -31,36 +31,25 @@
 
 		<div class="flex flex-col space-y-6">
 			<!-- display predictions -->
-			{#if $CameraStore.is_requesting == false}
-				<ul class="list w-80 md:w-[28rem] flex flex-col gap-4">
-					{#each $CameraStore.predictions as predict, index (index)}
-						<div class=" flex flex-col gap-1">
-							<span class="flex-auto">
-								<dt class=" flex justify-between text-sm">
-									<span>{$CameraStore.is_requesting ? 'none' : predict.label}</span>
-									<span
-										>{$CameraStore.is_requesting ? 'none' : (predict.score * 100).toFixed(1)} %</span
-									>
-								</dt>
-							</span>
-							<ProgressBar
-								label="Progress Bar"
-								height="h-1"
-								value={$CameraStore.is_requesting ? 0 : predict.score * 100}
-							/>
-						</div>
-					{/each}
-				</ul>
-			{:else}
-				<section class="card w-full">
-					<div class="p-4 space-y-2">
-						<div class="placeholder animate-pulse" />
-						<div class="placeholder animate-pulse" />
-						<div class="placeholder animate-pulse" />
-						<div class="placeholder animate-pulse" />
+			<ul class="list w-80 md:w-[28rem] flex flex-col gap-4">
+				{#each $CameraStore.predictions as predict, index (index)}
+					<div class=" flex flex-col gap-1">
+						<span class="flex-auto">
+							<dt class=" flex justify-between text-sm">
+								<span>{$CameraStore.is_requesting ? 'none' : predict.label}</span>
+								<span
+									>{$CameraStore.is_requesting ? 'none' : (predict.score * 100).toFixed(1)} %</span
+								>
+							</dt>
+						</span>
+						<ProgressBar
+							label="Progress Bar"
+							height="h-1"
+							value={$CameraStore.is_requesting ? 0 : predict.score * 100}
+						/>
 					</div>
-				</section>
-			{/if}
+				{/each}
+			</ul>
 
 			<!-- actions -->
 			<div class=" flex gap-4 justify-center items-center">

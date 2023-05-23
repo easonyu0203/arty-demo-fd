@@ -58,7 +58,11 @@ export const CameraStore = writable<Camera>({
 		let store: any;
 		CameraStore.update((value) => {
 			store = value;
-			return { ...value, is_requesting: true };
+			return {
+				...value,
+				is_requesting: true,
+				predictions: [{} as PredictDto, {} as PredictDto, {} as PredictDto, {} as PredictDto]
+			};
 		});
 
 		if (!store.video_element || !store.is_camera_on) return;
