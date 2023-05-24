@@ -17,10 +17,13 @@
 </Drawer>
 
 <!-- App Shell -->
-<AppShell>
+<AppShell slotSidebarLeft="w-0 md:w-52 bg-surface-500/60">
+	<svelte:fragment slot="sidebarLeft">
+		<Navigation />
+	</svelte:fragment>
 	<svelte:fragment slot="header">
 		<!-- App Bar -->
-		<AppBar slotSidebarLeft="">
+		<AppBar>
 			<svelte:fragment slot="lead">
 				<button
 					type="button"

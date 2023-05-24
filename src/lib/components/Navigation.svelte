@@ -16,10 +16,10 @@
 				Take Pictures
 			</a>
 		</li>
-		<!-- <li>
-			<a on:click={() => drawerStore.close()} href="/report" class={classesActive('/report')}>
-				Report Error
+		<li>
+			<a on:click={() => drawerStore.close()} href="/about" class={classesActive('/report')}>
+				About
 			</a>
-		</li> -->
+		</li>
 	</ul>
 </nav>

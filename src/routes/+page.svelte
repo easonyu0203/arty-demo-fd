@@ -1,7 +1,7 @@
 <!-- YOU CAN DELETE EVERYTHING IN THIS PAGE -->
 
 <div class="container h-full mx-auto flex justify-center items-center">
-	<div class="space-y-10 text-center flex flex-col items-center">
+	<div class="space-y-10 flex flex-col items-center">
 		<h2 class="h2">Predict what you see</h2>
 		<!-- Animated Logo -->
 		<figure>
@@ -57,8 +57,8 @@
 		</div>
 		<div class="space-y-2">
 			<p>Try to:</p>
-			<p>take some pictures</p>
-			<p>report predict wrong</p>
+			<p>Take some pictures!</p>
+			<p>Report predict wrong!</p>
 		</div>
 	</div>
 </div>
