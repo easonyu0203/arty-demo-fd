@@ -55,10 +55,11 @@
 		<div class="flex justify-center space-x-2">
 			<a class="btn variant-filled-primary" href="/take-pic"> Start Take Pictures!</a>
 		</div>
-		<div class="space-y-2">
-			<p>Try to:</p>
-			<p>Take some pictures!</p>
-			<p>Report predict wrong!</p>
+		<div class="flex flex-col gap-4 items-center">
+			<h1 class="px-4">open with phone for best experience</h1>
+			<button type="button" class="btn variant-ringed-secondary w-48"
+				><a href="https://arty-demo-fd.vercel.app/" target="_blank">Checkout live website!</a>
+			</button>
 		</div>
 	</div>
 </div>

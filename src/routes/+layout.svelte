@@ -10,8 +10,11 @@
 	import { Drawer, drawerStore } from '@skeletonlabs/skeleton';
 	import type { DrawerSettings } from '@skeletonlabs/skeleton';
 	import { CameraStore } from '$lib/stores/CameraStore';
+	import { Toast, toastStore } from '@skeletonlabs/skeleton';
+	import type { ToastSettings } from '@skeletonlabs/skeleton';
 </script>
 
+<Toast position="t" />
 <Drawer>
 	<Navigation />
 </Drawer>

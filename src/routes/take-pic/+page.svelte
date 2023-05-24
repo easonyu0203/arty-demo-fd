@@ -3,8 +3,18 @@
 	import { CameraStore } from '$lib/stores/CameraStore';
 	import { ProgressBar } from '@skeletonlabs/skeleton';
 	import { fade } from 'svelte/transition';
+	import { Toast, toastStore } from '@skeletonlabs/skeleton';
+	import type { ToastSettings } from '@skeletonlabs/skeleton';
 
 	let videoElement: HTMLVideoElement;
+
+	const reportAction = () => {
+		const toast: ToastSettings = {
+			message: 'report wrong successfully!',
+			timeout: 1500
+		};
+		toastStore.trigger(toast);
+	};
 
 	onMount(async () => {
 		$CameraStore.video_element = videoElement;
@@ -59,7 +69,9 @@
 					type="button"
 					class="btn variant-ringed-primary px-8">Predict</button
 				>
-				<button type="button" class="btn variant-ringed-error">Report Error</button>
+				<button on:click={() => reportAction()} type="button" class="btn variant-ringed-error"
+					>Report Error</button
+				>
 			</div>
 		</div>
 	</div>
